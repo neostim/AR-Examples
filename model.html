@@ -127,16 +127,16 @@ function initialize()
 	
 	new THREE.MTLLoader()
 		.setPath( 'models/' )
-		.load( 'fish-2.mtl', function ( materials ) {
+		.load( 'untitled.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
 				.setPath( 'models/' )
-				.load( 'fish-2.obj', function ( group ) {
+				.load( 'untitled.obj', function ( group ) {
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
 					mesh0.position.y = 0.25;
-					mesh0.scale.set(20.25,20.25,20.25);
+					mesh0.scale.set(5.25,5.25,5.25);
 					markerRoot1.add(mesh0);
 				}, onProgress, onError );
 		});
