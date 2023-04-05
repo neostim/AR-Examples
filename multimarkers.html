@@ -4,9 +4,9 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <body style="margin : 0px; overflow: hidden;">
         <a-scene embedded arjs>
-            <a-marker-camera preset="hiro" smooth="true" type="pattern" url="patterns/hiro.patt"></a-marker-camera>
-            <a-marker preset="kanji" smooth="true" type="pattern" url="patterns/kanji.patt"></a-marker>
-            <a-entity position="0 0 0">
+            <a-marker-camera preset="hiro" smooth="true"></a-marker-camera>
+            <a-marker preset="kanji" smooth="true"></a-marker>
+            <a-entity position="-3 0 0">
                 <a-gltf-model src="models/assembly.gltf" scale="1.0 1.0 1.0" material="opacity: 0.5; transparent: true"></a-gltf-model>
                 <a-animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 0"></a-animation>
             </a-entity>
@@ -23,6 +23,7 @@
                         var marker1Visible = this.marker1.object3D.visible;
                         var marker2Visible = this.marker2.object3D.visible;
                         if (marker1Visible && marker2Visible) {
+                            console.log("Both visible");
                             this.el.object3D.visible = true;
                             this.marker1Found = true;
                             this.marker2Found = true;
