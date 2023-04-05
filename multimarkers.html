@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <body style="margin : 0px; overflow: hidden;">
         <a-scene embedded arjs>
-            <a-marker-camera preset="hiro">
-                <a-entity
-                    position="-3 0 0"
-                    scale="1.0 1.0 1.0"
-                    gltf-model="models/assembly.gltf"
-                    material="opacity: 0.5; transparent: true"
-                ></a-entity>
-            </a-marker-camera>
-
-            <a-marker-camera preset="kanji">
-                <a-entity
-                    position="-3 0 0"
-                    scale="1.0 1.0 1.0"
-                    gltf-model="models/assembly.gltf"
-                    material="opacity: 0.5; transparent: true"
-                ></a-entity>
-            </a-marker>
-            <!-- add more markers here if needed -->
-
-            <a-entity camera></a-entity>
+            <a-marker-camera preset="hiro" smooth="true" type="pattern" url="patterns/hiro.patt"></a-marker-camera>
+            <a-marker preset="kanji" smooth="true" type="pattern" url="patterns/kanji.patt"></a-marker>
+            <a-entity position="0 0 0">
+                <a-gltf-model src="models/assembly.gltf" scale="1.0 1.0 1.0" material="opacity: 0.5; transparent: true"></a-gltf-model>
+                <a-animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 0"></a-animation>
+            </a-entity>
+            <script>
+                AFRAME.registerComponent('multiple-marker-position', {
+                    init: function () {
+                        this.el.object3D.visible = false;
+                        this.marker1Found = false;
+                        this.marker2Found = false;
+                        this.marker1 = document.querySelector('a-marker[preset="hiro"]');
+                        this.marker2 = document.querySelector('a-marker[preset="kanji"]');
+                    },
+                    tick: function () {
+                        var marker1Visible = this.marker1.object3D.visible;
+                        var marker2Visible = this.marker2.object3D.visible;
+                        if (marker1Visible && marker2Visible) {
+                            this.el.object3D.visible = true;
+                            this.marker1Found = true;
+                            this.marker2Found = true;
+                            this.el.object3D.position.copy(this.marker1.object3D.position).add(this.marker2.object3D.position).multiplyScalar(0.5);
+                            this.el.object3D.quaternion.copy(this.marker1.object3D.quaternion).multiply(this.marker2.object3D.quaternion);
+                        } else if (marker1Visible && !this.marker2Found) {
+                            this.el.object3D.visible = true;
+                            this.marker1Found = true;
+                            this.el.object3D.position.copy(this.marker1.object3D.position);
+                            this.el.object3D.quaternion.copy(this.marker1.object3D.quaternion);
+                        } else if (marker2Visible && !this.marker1Found) {
+                            this.el.object3D.visible = true;
+                            this.marker2Found = true;
+                            this.el.object3D.position.copy(this.marker2.object3D.position);
+                            this.el.object3D.quaternion.copy(this.marker2.object3D.quaternion);
+                        } else {
+                            this.el.object3D.visible = false;
+                        }
+                    }
+                });
+            </script>
+            <a-entity multiple-marker-position></a-entity>
         </a-scene>
     </body>
 </html>
