@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AR.js Example</title>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.2.0/dist/AR.js"></script>
+</head>
+<body>
+  <a-scene embedded arjs>
+    <!-- Define the marker image to track -->
+    <a-marker preset="hiro">
+      <!-- Define the arjs-anchor component to anchor the model to the marker -->
+      <a-entity arjs-anchor>
+        <!-- Define the 3D model to overlay on the marker -->
+        <a-entity
+          position="0 0 0"
+          scale="0.01 0.01 0.01"
+          gltf-model="models/assembly.gltf"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 2000"
+        ></a-entity>
+      </a-entity>
+    </a-marker>
+    <!-- Define the camera to view the AR scene -->
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
