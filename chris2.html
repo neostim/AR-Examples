@@ -14,7 +14,23 @@
                console.log(stringToLog);
              }
             });
+                
+                document.querySelector("button").addEventListener("click", (e)=>{
+	console.log("Increase Scale");
+                    
+})
+                
+                
     </script>
+        
+        <!--buttons -->
+            <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
+		<button>
+     Increase Scale
+    </button>
+	</div>
+        
+        
         <a-scene embedded arjs log="Testing!">
         <a-marker-camera preset="hiro"  smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
             <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
