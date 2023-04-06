@@ -132,18 +132,18 @@
           assembly.setAttribute('position', position);
         }
 		    
-function moveY(amount) {
+function moveZ(amount) {
           var assembly = document.querySelector('#assembly');
           var position = assembly.getAttribute('position');
-          position.y += amount;
+          position.z += amount;
           assembly.setAttribute('position', position);
         }
 		    
 	    </script>
 	    
 	     <div class="container">
-    <button id="move-up" class="button up" onclick="moveY(-0.1)">&#8593;</button>
-    <button id="move-down" class="button down" onclick="moveY(0.1)">&#8595;</button>
+    <button id="move-up" class="button up" onclick="moveZ(-0.1)">&#8593;</button>
+    <button id="move-down" class="button down" onclick="moveZ(0.1)">&#8595;</button>
     <button id="move-left" class="button left" onclick="moveX(-0.1)">&#8592;</button>
     <button id="move-right" class="button right" onclick="moveX(0.1)">&#8594;</button>
       </div>
