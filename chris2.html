@@ -19,7 +19,58 @@
 		    
              
     </script>
-        
+         <style>
+    
+    .container {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-color: #f1f1f1;
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      
+      /* Style the buttons */
+      .button {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        border: none;
+        border-radius: 50%;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        position: absolute;
+      }
+
+      /* Position the buttons */
+      .button.up {
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .button.down {
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .button.left {
+        top: 50%;
+        left: 25;
+        transform: translateY(-50%);
+      }
+
+      .button.right {
+        top: 50%;
+        right: 3%;
+        transform: translateY(-50%);
+      }
+    </style>
         <!--buttons -->
             <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
 		<button id="increase-button">
@@ -82,5 +133,12 @@
         }
 		    
 	    </script>
+	    
+	     <div class="container">
+    <button class="button up">&#8593;</button>
+    <button class="button down">&#8595;</button>
+    <button class="button left">&#8592;</button>
+    <button class="button right">&#8594;</button>
+      </div>
     </body>
 </html>
