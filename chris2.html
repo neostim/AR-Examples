@@ -23,7 +23,10 @@
         <!--buttons -->
             <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
 		<button id="increase-button">
-     Increase Scale
+			     Increase
+    </button>
+	        <button id="decrease-button">
+     Decrease
     </button>
 	</div>
         
@@ -50,13 +53,22 @@
 	    
 	    <script>
       var assembly = document.querySelector('#assembly');
-      var increaseButton = document.querySelector('#increase-button');  
+      var increaseButton = document.querySelector('#increase-button'); 
+      var decreaseButton = document.querySelector('#decrease-button');
       var scale = 1;
 		    
 	increaseButton.addEventListener('click', function() {
         scale += 0.1;
         assembly.setAttribute('scale', scale + ' ' + scale + ' ' + scale);
 		console.log("Increase Scale");
+      });
+		    
+	decreaseButton.addEventListener('click', function() {
+        scale -= 0.1;
+        if (scale <= 0) {
+          scale = 0.1;
+        }
+        myBox.setAttribute('scale', scale + ' ' + scale + ' ' + scale);
       });
 		    
   
