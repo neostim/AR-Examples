@@ -86,11 +86,11 @@
         
         
         <a-scene embedded arjs log="Testing!">
-        <a-marker-camera preset="hiro"  smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+        <a-marker-camera preset="hiro" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
             <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
             <a-entity
             id="assembly"
-            look-controls
+            <!--look-controls-->
             position="-3 0 0"
             scale="1.0 1.0 1.0"
             gltf-model="models/assembly.gltf"
