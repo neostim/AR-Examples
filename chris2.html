@@ -28,6 +28,9 @@
 	        <button id="decrease-button">
      Decrease
     </button>
+		<button id="move-x" onclick="moveX(0.1)">
+     Move X
+    </button>
 	</div>
         
         
@@ -71,7 +74,12 @@
         assembly.setAttribute('scale', scale + ' ' + scale + ' ' + scale);
       });
 		    
-  
+   function moveX(amount) {
+          var assembly = document.querySelector('#assembly');
+          var position = assembly.getAttribute('position');
+          position.x += amount;
+          assembly.setAttribute('position', position);
+        }
 		    
 	    </script>
     </body>
