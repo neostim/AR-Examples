@@ -24,6 +24,10 @@
             ></a-entity>
             <a-text value="Walters \n Group" color="Blue" position="0 0 -1" rotation="-90 0 0"></a-text>
         </a-marker>
+               <a-ui>
+        <a-entity id="increase-button" position="0.5 -0.5 -1" rotation="0 0 0" geometry="primitive: box; width: 0.4; height: 0.4; depth: 0.1" material="color: green" text="value: +; color: white; align: center" scale="1 1 1" hoverable></a-entity>
+        <a-entity id="decrease-button" position="-0.5 -0.5 -1" rotation="0 0 0" geometry="primitive: box; width: 0.4; height: 0.4; depth: 0.1" material="color: red" text="value: -; color: white; align: center" scale="1 1 1" hoverable></a-entity>
+      </a-ui>
       <!--  <a-entity camera></a-entity> -->
         </a-scene>
     </body>
