@@ -15,17 +15,14 @@
              }
             });
                 
-                document.querySelector("button").addEventListener("click", (e)=>{
-	console.log("Increase Scale");
-                    
-})
-                
-                
+            
+		    
+             
     </script>
         
         <!--buttons -->
             <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
-		<button>
+		<button id="increase-button">
      Increase Scale
     </button>
 	</div>
@@ -35,6 +32,7 @@
         <a-marker-camera preset="hiro"  smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
             <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
             <a-entity
+            id="assembly"
             look-controls
             position="-3 0 0"
             scale="1.0 1.0 1.0"
@@ -49,5 +47,19 @@
       </a-ui>
       <!--  <a-entity camera></a-entity> -->
         </a-scene>
+	    
+	    <script>
+      var assembly = document.querySelector('#assembly');
+      var increaseButton = document.querySelector('#increase-button');    
+		    
+	increaseButton.addEventListener('click', function() {
+        scale += 0.1;
+        assembly.setAttribute('scale', scale + ' ' + scale + ' ' + scale);
+		console.log("Increase Scale");
+      });
+		    
+  
+		    
+	    </script>
     </body>
 </html>
