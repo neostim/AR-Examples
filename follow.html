@@ -16,3 +16,67 @@
   </body>
 </html>
 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.3/mediapipe-pose.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  </head>
+  <body>
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+      <a-nft
+        type="nft"
+        url="https://raw.githubusercontent.com/jeromeetienne/AR.js/master/three.js/examples/marker-training/examples/pattern-files/pattern-hiro.patt"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
+        smoothThresholdColor="#000"
+      >
+        <a-entity
+          position="0 0 0"
+          scale="0.01 0.01 0.01"
+          gltf-model="models/assembly.gltf"
+        ></a-entity>
+      </a-nft>
+    </a-scene>
+
+    <script>
+      const scene = document.querySelector('a-scene');
+      const nftMarker = document.querySelector('a-nft');
+      let modelPlaced = false;
+      
+      // Listen for marker found and lost events
+      nftMarker.addEventListener('markerFound', () => {
+        modelPlaced = true;
+      });
+      
+      nftMarker.addEventListener('markerLost', () => {
+        modelPlaced = false;
+      });
+      
+      // Listen for every frame update
+      scene.addEventListener('loaded', () => {
+        scene.addEventListener('enter-vr', () => {
+          scene.camera.el.addEventListener('componentchanged', (evt) => {
+            if (evt.detail.name === 'position' && modelPlaced) {
+              const model = nftMarker.object3D.children[0];
+              const camera = scene.camera.el.object3D;
+              const cameraPos = new THREE.Vector3().setFromMatrixPosition(camera.matrixWorld);
+              const modelPos = new THREE.Vector3().setFromMatrixPosition(model.matrixWorld);
+              const cameraDist = cameraPos.distanceTo(modelPos);
+              model.position.x = cameraPos.x - cameraDist;
+              model.position.y = cameraPos.y;
+              model.position.z = cameraPos.z;
+              model.lookAt(cameraPos);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
