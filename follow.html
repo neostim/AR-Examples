@@ -4,6 +4,8 @@
       <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.2/mediapipe-pose.js"></script>
       <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+      <script src="https://rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/aframe-mrdoob-controls@0.6.0/dist/aframe-mrdoob-controls.min.js"></script>
       <script>
          AFRAME.registerComponent('markerhandler', {
              init: function() {
@@ -19,10 +21,11 @@
    </head>
    <body>
       <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-         <a-marker preset="hiro" markerhandler>
-            <a-entity position="0 0 0" scale="1 1 1" gltf-model="models/assembly.gltf" tracked-controls></a-entity>
-         </a-marker>
-         <a-entity camera></a-entity>
+         <a-entity camera look-controls wasd-controls position="0 1.6 0">
+            <a-entity position="0 -0.5 -3">
+               <a-entity gltf-model="models/assembly.gltf" scale="1 1 1" position="0 0 0" markerhandler></a-entity>
+            </a-entity>
+         </a-entity>
       </a-scene>
    </body>
 </html>
