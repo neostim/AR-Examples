@@ -21,11 +21,11 @@
    </head>
    <body>
       <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-         <a-entity camera look-controls wasd-controls position="0 1.6 0">
-            <a-entity position="0 -0.5 -3">
-               <a-entity gltf-model="models/assembly.gltf" scale="1 1 1" position="0 0 0" markerhandler></a-entity>
-            </a-entity>
-         </a-entity>
+         <a-marker preset="hiro">
+            <a-entity gltf-model="models/assembly.gltf" scale="1 1 1" position="0 0 0" markerhandler></a-entity>
+         </a-marker>
+         <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
       </a-scene>
    </body>
 </html>
+
